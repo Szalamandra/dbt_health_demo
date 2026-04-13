@@ -1,0 +1,43 @@
+version: 1
+
+sources:
+  - name: health_demo
+    schema: health_demo
+    tables:
+      - name: patients
+        description: "A spatient details"
+        columns:
+          - name: patient_id
+            description: "The primary key for this table"
+            data_tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: "The patient's first name"
+          - name: last_name
+            description: "The patient's last name"
+          - name: date_of_birth
+            description: "The patient's date of birth"
+          - name: gender
+            description: "The patient's gender"
+          - name: phone
+            description: "The patient's phone number"
+          - name: email
+            description: "The patient's email address"
+          - name: city
+            description: "The patient's city of residence"
+          - name: state
+            description: "The patient's state of residence"
+          - name: signup_date
+            description: "The date the patient signed up for the service"
+          - name: insurance_type
+            description: "The type of insurance the patient has"
+      - name: providers
+      - name: departments
+      - name: diagnoses
+      - name: procedures
+      - name: appointments
+      - name: encounters
+      - name: claims
+      - name: payments
+      - name: web_activity

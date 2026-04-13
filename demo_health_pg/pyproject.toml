@@ -1,0 +1,19 @@
+[project]
+name = "health-demo-dbt"
+version = "0.1.0"
+description = "A local dbt Core healthcare analytics practice project using PostgreSQL"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "dbt-postgres>=1.8,<2.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "sqlfluff>=3.0.0",
+  "sqlfluff-templater-dbt>=3.0.0"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

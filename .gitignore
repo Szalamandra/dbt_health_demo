@@ -1,0 +1,8 @@
+logs
+.sixth
+dbt_env
+
+target/
+dbt_packages/
+logs/
+dbt_internal_packages/
