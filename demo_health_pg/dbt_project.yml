@@ -31,20 +31,22 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   health_demo:
+    raw:
+      +materialized: view
     staging:
       +materialized: view
-    intermediate:
-      +materialized: view
-    marts:
-      +materialized: table
+    # intermediate:
+    #   +materialized: view
+    # marts:
+    #   +materialized: table
 
-seeds:
-  health_demo:
-    +schema: seed_data
+# seeds:
+#   health_demo:
+#     +schema: seed_data
 
-snapshots:
-  health_demo:
-    +target_schema: snapshots
+# snapshots:
+#   health_demo:
+#     +target_schema: snapshots
 
 tests:
   health_demo:
