@@ -3,7 +3,7 @@ version: 1
 sources:
   - name: health_demo
     description: "Raw healthcare operational data loaded into the health_demo schema."
-    schema: health_demo
+    schema: health_demo     # This is the schema where the raw source tables are located in the database.
     tables:
       - name: patients
         description: "Raw patient details."
@@ -64,7 +64,7 @@ sources:
           - name: location
             description: "The department location."
 
-      - name: diagnoses
+      - name: diagnosis
         description: "Raw diagnosis code reference data."
         columns:
           - name: diagnosis_code

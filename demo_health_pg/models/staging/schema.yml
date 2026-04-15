@@ -1,3 +1,197 @@
-
 version: 1
 
+sources:
+  - name: health_demo
+    description: "staged healthcare operational data loaded into the build_health schema."
+    tables:
+      - name: stg_patients
+        description: "Raw patient details."
+        columns:
+          - name: patient_id
+            description: "Primary key for the patient."
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: "The patient's first name."
+          - name: last_name
+            description: "The patient's last name."
+          - name: date_of_birth
+            description: "The patient's date of birth."
+          - name: gender
+            description: "The patient's gender."
+          - name: phone
+            description: "The patient's phone number."
+          - name: email
+            description: "The patient's email address."
+          - name: city
+            description: "The patient's city of residence."
+          - name: state
+            description: "The patient's state of residence."
+          - name: signup_date
+            description: "The date the patient signed up for the service."
+          - name: insurance_type
+            description: "The type of insurance the patient has."
+
+      - name: stg_providers
+        description: "Raw provider details."
+        columns:
+          - name: provider_id
+            description: "Primary key for the provider."
+            tests:
+              - unique
+              - not_null
+          - name: provider_name
+            description: "The provider's full name."
+          - name: specialty
+            description: "The provider's medical specialty."
+          - name: department_id
+            description: "Foreign key to the department."
+          - name: hire_date
+            description: "The date the provider was hired."
+
+      - name: stg_departments
+        description: "Raw department reference data."
+        columns:
+          - name: department_id
+            description: "Primary key for the department."
+            tests:
+              - unique
+              - not_null
+          - name: department_name
+            description: "The department name."
+          - name: location
+            description: "The department location."
+
+      - name: stg_diagnosis
+        description: "Raw diagnosis code reference data."
+        columns:
+          - name: diagnosis_id
+            description: "Primary diagnosis code."
+            tests:
+              - unique
+              - not_null
+          - name: diagnosis_name
+            description: "Diagnosis description."
+          - name: diagnosis_group
+            description: "Diagnosis category group."
+
+      - name: stg_procedures
+        description: "Raw procedure code reference data."
+        columns:
+          - name: procedure_code
+            description: "Primary procedure code."
+            tests:
+              - unique
+              - not_null
+          - name: procedure_name
+            description: "Procedure description."
+          - name: procedure_group
+            description: "Procedure category group."
+          - name: standard_price
+            description: "Standard listed price for the procedure."
+
+      - name: stg_appointments
+        description: "Raw appointment records."
+        columns:
+          - name: appointment_id
+            description: "Primary key for the appointment."
+            tests:
+              - unique
+              - not_null
+          - name: patient_id
+            description: "Foreign key to the patient."
+          - name: provider_id
+            description: "Foreign key to the provider."
+          - name: department_id
+            description: "Foreign key to the department."
+          - name: appointment_date
+            description: "Date of the appointment."
+          - name: appointment_type
+            description: "Type of appointment."
+          - name: status
+            description: "Appointment status."
+          - name: scheduled_at
+            description: "Timestamp when the appointment was scheduled."
+
+      - name: stg_encounters
+        description: "Raw clinical encounter records."
+        columns:
+          - name: encounter_id
+            description: "Primary key for the encounter."
+            tests:
+              - unique
+              - not_null
+          - name: appointment_id
+            description: "Foreign key to the appointment."
+          - name: patient_id
+            description: "Foreign key to the patient."
+          - name: provider_id
+            description: "Foreign key to the provider."
+          - name: encounter_date
+            description: "Date of the encounter."
+          - name: diagnosis_code
+            description: "Diagnosis code recorded during the encounter."
+          - name: procedure_code
+            description: "Procedure code recorded during the encounter."
+          - name: billed_amount
+            description: "Amount billed for the encounter."
+
+      - name: stg_claims
+        description: "Raw insurance claim records."
+        columns:
+          - name: claim_id
+            description: "Primary key for the claim."
+            tests:
+              - unique
+              - not_null
+          - name: encounter_id
+            description: "Foreign key to the encounter."
+          - name: patient_id
+            description: "Foreign key to the patient."
+          - name: claim_date
+            description: "Date the claim was created."
+          - name: insurance_type
+            description: "Insurance type used for the claim."
+          - name: claim_amount
+            description: "Amount claimed."
+          - name: claim_status
+            description: "Current status of the claim."
+
+      - name: stg_payments
+        description: "Raw payment records related to claims."
+        columns:
+          - name: payment_id
+            description: "Primary key for the payment."
+            tests:
+              - unique
+              - not_null
+          - name: claim_id
+            description: "Foreign key to the claim."
+          - name: patient_id
+            description: "Foreign key to the patient."
+          - name: payment_date
+            description: "Date of payment."
+          - name: payment_method
+            description: "Method used for the payment."
+          - name: paid_amount
+            description: "Amount paid."
+
+      - name: stg_web_activity
+        description: "Raw patient web activity events."
+        columns:
+          - name: activity_id
+            description: "Primary key for the web activity event."
+            tests:
+              - unique
+              - not_null
+          - name: patient_id
+            description: "Foreign key to the patient."
+          - name: activity_timestamp
+            description: "Timestamp of the web activity event."
+          - name: page_type
+            description: "Type of webpage visited."
+          - name: device_type
+            description: "Type of device used."
+          - name: campaign_source
+            description: "Marketing source associated with the visit."
