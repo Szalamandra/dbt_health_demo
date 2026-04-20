@@ -111,6 +111,9 @@ sources:
             description: "Type of appointment."
           - name: status
             description: "Appointment status."
+            tests:
+              - accepted_values:
+                  values: ['scheduled', 'completed', 'cancelled', 'no_show']
           - name: scheduled_at
             description: "Timestamp when the appointment was scheduled."
 
